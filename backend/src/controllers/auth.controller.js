@@ -61,8 +61,9 @@ const loginUser = asyncHandler(async (req, res) => {
         .select("-password -refreshToken");
 
     const options = {
-        httpOnly: true,
-        secure: false
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
     };
 
     return res
