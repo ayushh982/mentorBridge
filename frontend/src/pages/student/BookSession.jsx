@@ -189,12 +189,12 @@ const handleBooking = async () => {
 
                             <img
                                 src={
-    student.avatar ||
-    `https://ui-avatars.com/api/?name=${encodeURIComponent(
-        student.fullName || "User"
-    )}&background=4F46E5&color=ffffff`
-}
-                                alt="mentor"
+                                    mentor?.user?.avatar ||
+                                    `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                                        mentor?.user?.fullName || "User"
+                                    )}&background=4F46E5&color=ffffff`
+                                }
+                                alt={mentor?.user?.fullName}
                                 className="h-20 w-20 rounded-full"
                             />
 

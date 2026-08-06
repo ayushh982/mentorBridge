@@ -235,7 +235,7 @@ const filteredMentors = mentors
                                 </div>
 
                                 <button
-    onClick={() => navigate(`/mentors/${mentor._id}`)}
+    onClick={() => navigate(`/student/mentor/${mentor._id}`)}
     className="mt-6 rounded-xl bg-indigo-600 px-6 py-3 text-white hover:bg-indigo-700"
 >
     View Profile

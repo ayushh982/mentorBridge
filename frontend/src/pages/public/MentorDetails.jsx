@@ -7,6 +7,7 @@ import {
     CalendarDays,
     IndianRupee,
 } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 import { getMentorById } from "../../services/mentor.service";
 
@@ -17,6 +18,10 @@ const MentorDetails = () => {
 
     const [mentor, setMentor] = useState(null);
     const [loading, setLoading] = useState(true);
+    
+    const location = useLocation();
+
+    const isStudentPage = location.pathname.startsWith("/student");
 
     useEffect(() => {
 
@@ -110,14 +115,16 @@ const MentorDetails = () => {
 
                     </div>
 
-                    <button
-                        onClick={() =>
-                            navigate(`/student/book-session/${mentor._id}`)
-                        }
-                        className="mt-8 w-full rounded-xl bg-indigo-600 py-3 text-white hover:bg-indigo-700"
-                    >
-                        Book Session
-                    </button>
+                    {isStudentPage && (
+                        <button
+                            onClick={() =>
+                                navigate(`/student/book-session/${mentor._id}`)
+                            }
+                            className="mt-8 w-full rounded-xl bg-indigo-600 py-3 text-white hover:bg-indigo-700"
+                        >
+                            Book Session
+                        </button>
+                    )}
 
                 </div>
 

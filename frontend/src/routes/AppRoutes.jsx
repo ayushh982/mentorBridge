@@ -109,6 +109,11 @@ const AppRoutes = () => {
             element={<MentorListing />}
         />
 
+        <Route
+            path="/student/mentor/:id"
+            element={<MentorDetails />}
+        />
+
 
     </Route>
 
