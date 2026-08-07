@@ -53,6 +53,10 @@ const VideoCall = () => {
 
                     console.log("Token Generated:", !!kitToken);
                     console.log(kitToken);
+                    console.log("App ID:", appID);
+                    console.log("Server Secret:", serverSecret);
+                    console.log("Meeting ID:", meetingId);
+                    console.log("User ID:", user._id);
 
                 const zp =
                     ZegoUIKitPrebuilt.create(kitToken);
