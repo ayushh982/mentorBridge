@@ -6,18 +6,18 @@ import { getMeetingDetails } from "../../services/video.service";
 import { useAuth } from "../../context/AuthContext";
 
 const VideoCall = () => {
-    console.log("VideoCall Mounted");
-
+    
+    const hasJoined = useRef(false);
     const { bookingId } = useParams();
     const { user } = useAuth();
 
     const meetingRef = useRef(null);
 
     useEffect(() => {
-        console.log("VideoCall useEffect");
+        
 
         const startMeeting = async () => {
-            console.log("Calling API");
+            
 
             try {
 
@@ -25,9 +25,11 @@ const VideoCall = () => {
 
                 const meetingId = res.data.meetingId;
 
+                
+
                 const appID = Number(import.meta.env.VITE_ZEGO_APP_ID);
 
-                const serverSecret = "65652d60ad41bbe965999fa7c61997f8";
+                const serverSecret = "92f7204c89780f810b39fd424f5ef2fd";
 
                 const kitToken =
                     ZegoUIKitPrebuilt.generateKitTokenForTest(
@@ -38,10 +40,13 @@ const VideoCall = () => {
                         user.fullName
                     );
 
+                    console.log("Token Generated:", !!kitToken);
+                    console.log(kitToken);
+
                 const zp =
                     ZegoUIKitPrebuilt.create(kitToken);
 
-                zp.joinRoom({
+                try{zp.joinRoom({
 
                     container: meetingRef.current,
 
@@ -59,7 +64,9 @@ const VideoCall = () => {
 
                     showScreenSharingButton: true,
 
-                });
+                })}catch(error){
+                    console.log("error of join room",error);
+                }
 
             } catch (error) {
 
@@ -69,7 +76,12 @@ const VideoCall = () => {
 
         };
 
-        if (user) {
+        // if (user) {
+        //     startMeeting();
+        // }
+
+        if (user && !hasJoined.current) {
+            hasJoined.current = true;
             startMeeting();
         }
 
