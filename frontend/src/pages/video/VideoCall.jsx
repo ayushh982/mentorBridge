@@ -31,12 +31,23 @@ const VideoCall = () => {
 
                 const serverSecret = "92f7204c89780f810b39fd424f5ef2fd";
 
+                // const kitToken =
+                //     ZegoUIKitPrebuilt.generateKitTokenForTest(
+                //         appID,
+                //         serverSecret,
+                //         meetingId,
+                //         user._id,
+                //         user.fullName
+                //     );
+
+                const zegoUserId = String(Date.now());
+
                 const kitToken =
                     ZegoUIKitPrebuilt.generateKitTokenForTest(
                         appID,
                         serverSecret,
                         meetingId,
-                        user._id,
+                        zegoUserId,
                         user.fullName
                     );
 
